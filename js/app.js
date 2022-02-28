@@ -17,7 +17,7 @@ const allPhone = () => {
 const displayPhone = (phones) => {
   const phoneContainer = document.getElementById("phone-container");
   phoneContainer.textContent = "";
-  phones.forEach((phone) => {
+  phones.slice(0, 20).forEach((phone) => {
     // console.log(phone);
     const div = document.createElement("div");
     div.classList.add("col");
@@ -27,7 +27,6 @@ const displayPhone = (phones) => {
         <div class="card-body">
         <h4 class="card-title">Name: ${phone.phone_name}</h4>
         <h6>Brand: ${phone.brand}</h6>
-        <p class="card-text"></p>
         <button onclick="phoneDetails('${phone.slug}')" type="button" class="btn btn-success btn-sm">Show details</button>
         </div>
         </div>
@@ -49,4 +48,27 @@ const phoneDetails = (id) => {
 const displayPhoneDetails = (details) => {
   console.log(details);
   const detailsContainer = document.getElementById("details-container");
+  detailsContainer.textContent = "";
+  const div = document.createElement("div");
+  div.innerHTML = `
+        <div class="text-center bg-info text-white p-2">
+        <h3>Details Information</h3>
+        </div>
+        <div class="card h-100">
+        <img src="${details.image}" class="card-img-top w-50 mx-auto p-4" alt="...">
+        <div class="card-body">
+        <h4 class="card-title">Name: ${details.name}</h4>
+        <h6>Brand: ${details.brand}</h6>
+        <p class="card-text">Release Date: ${details.releaseDate}</p>
+        <h6 class="card-text">Main Features:</h6>
+            <ul>
+                <li>Chipset: ${details.mainFeatures.chipSet}</li>
+                <li>Memory: ${details.mainFeatures.memory}</li>
+                <li>Storage: ${details.mainFeatures.storage}</li>
+                <li>Display: ${details.mainFeatures.displaySize}</li>
+            </ul>
+        </div>
+        </div>
+    `;
+  detailsContainer.appendChild(div);
 };
