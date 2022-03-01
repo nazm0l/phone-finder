@@ -24,7 +24,7 @@ const displayPhone = (phones) => {
     div.innerHTML = `
         <div class="card h-100">
         <img src="${phone.image}" class="card-img-top w-50 mx-auto p-4" alt="...">
-        <div class="card-body">
+        <div class="card-body text-center">
         <h4 class="card-title">Name: ${phone.phone_name}</h4>
         <h6>Brand: ${phone.brand}</h6>
         <button onclick="phoneDetails('${phone.slug}')" type="button" class="btn btn-success btn-sm">Show details</button>
@@ -55,17 +55,59 @@ const displayPhoneDetails = (details) => {
         <h3>Details Information</h3>
         </div>
         <div class="card h-100">
-        <img src="${details.image}" class="card-img-top w-50 mx-auto p-4" alt="...">
+        <img src="${
+          details.image
+        }" class="card-img-top w-50 mx-auto p-4" alt="...">
         <div class="card-body">
-        <h4 class="card-title">Name: ${details.name}</h4>
-        <h6>Brand: ${details.brand}</h6>
-        <p class="card-text">Release Date: ${details.releaseDate}</p>
-        <h6 class="card-text">Main Features:</h6>
+        <h4 class="card-title"><span class="fw-bold">Name:</span> ${
+          details.name
+        }</h4>
+        <h6><span class="fw-bold">Brand:</span> ${details.brand}</h6>
+        <p class="card-text"><span class="fw-bold">Release Date:</span> ${
+          details?.releaseDate ? details?.releaseDate : "Not Found"
+        }</p>
+        <p class="card-text fw-bold">Main Features:</p>
             <ul>
-                <li>Chipset: ${details.mainFeatures.chipSet}</li>
-                <li>Memory: ${details.mainFeatures.memory}</li>
-                <li>Storage: ${details.mainFeatures.storage}</li>
-                <li>Display: ${details.mainFeatures.displaySize}</li>
+                <li><span class="fw-bold">Chipset:</span> ${
+                  details.mainFeatures.chipSet
+                    ? details.mainFeatures.chipSet
+                    : "Not Found"
+                }</li>
+                <li><span class="fw-bold">Memory:</span> ${
+                  details.mainFeatures.memory
+                }</li>
+                <li><span class="fw-bold">Storage:</span> ${
+                  details.mainFeatures.storage
+                }</li>
+                <li><span class="fw-bold">Display:</span> ${
+                  details.mainFeatures.displaySize
+                }</li>
+                <li><span class="fw-bold">Sensors:</span> ${
+                  details.mainFeatures.sensors
+                }</li>
+            </ul>
+        <p class="card-text fw-bold">Others:</p>
+            <ul>
+                <li><span class="fw-bold">Bluetooth:</span> ${
+                  details?.others?.Bluetooth
+                    ? details?.others?.Bluetooth
+                    : "Not Found"
+                }</li>
+                <li><span class="fw-bold">GPS:</span> ${
+                  details?.others?.GPS ? details?.others?.GPS : "Not Found"
+                }</li>
+                <li><span class="fw-bold">NFC:</span> ${
+                  details?.others?.NFC ? details?.others?.NFC : "Not Found"
+                }</li>
+                <li><span class="fw-bold">Radio:</span> ${
+                  details?.others?.Radio ? details?.others?.Radio : "Not Found"
+                }</li>
+                <li><span class="fw-bold">USB:</span> ${
+                  details?.others?.USB ? details?.others?.USB : "Not Found"
+                }</li>
+                <li><span class="fw-bold">WLAN:</span> ${
+                  details?.others?.WLAN ? details?.others?.WLAN : "Not Found"
+                }</li>
             </ul>
         </div>
         </div>
