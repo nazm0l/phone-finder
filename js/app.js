@@ -1,6 +1,11 @@
 // Load Phones
 
 const allPhone = () => {
+  // reset search found
+  document.getElementById("search-found").textContent = "";
+  document.getElementById("details-container").textContent = "";
+
+  // getting search input value
   const searchValue = document.getElementById("searchInput").value;
   const url = `https://openapi.programming-hero.com/api/phones?search=${searchValue}`;
 
@@ -13,12 +18,22 @@ const allPhone = () => {
 };
 
 // display phones
-
 const displayPhone = (phones) => {
+  // No result validation
+  if (status == false) {
+    document.getElementById("no-result").style.display = "block";
+  }
+
+  // Total search found
+  const searchFound = document.getElementById("search-found");
+  const div = document.createElement("div");
+  div.innerHTML = `<h4 class="text-success">Total Item Found: ${phones.length}</h4>`;
+  searchFound.appendChild(div);
+
+  // Card container
   const phoneContainer = document.getElementById("phone-container");
   phoneContainer.textContent = "";
   phones.slice(0, 20).forEach((phone) => {
-    // console.log(phone);
     const div = document.createElement("div");
     div.classList.add("col");
     div.innerHTML = `
@@ -32,6 +47,7 @@ const displayPhone = (phones) => {
         </div>
     `;
     phoneContainer.appendChild(div);
+    document.getElementById("no-result").style.display = "none";
   });
 };
 
